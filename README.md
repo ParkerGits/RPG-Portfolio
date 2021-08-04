@@ -1,29 +1,34 @@
-# Next.js + Tailwind CSS Example
+# 🧙‍♂️ RPG Portfolio
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v2.2)](https://blog.tailwindcss.com/tailwindcss-2-2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+Given my love for RPGs, it's not hard to understand why I would want my online portfolio to be themed like an old-school RPG shop cutscene.
 
-It uses the new [`Just-in-Time Mode`](https://tailwindcss.com/docs/just-in-time-mode) for Tailwind CSS.
+## 💻 Tech Stack
 
-## Preview
+- React
+- Next.js
+- TailwindCSS
+- XState
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+## 🌟 Features
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+### 👑 Animated Shop Cutscene
 
-## Deploy your own
+Your character will enter the shop and approach the shop keeper. The shop keeper will then introduce his wares (which happen to be my portfolio projects).
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+A long term goal for this project might be to allow the player to exit the event with the shop keeper and talk to other NPCs in the shop.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+### 💬 Interactive Dialogue Box
 
-## How to use
+When talking with an NPC, there will be a dialogue box that the user can interact with. The short term vision of this is for the user to click through the dialogue. Perhaps I could implement some user choice, though.
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+### 💰 Shop Menu
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
+When the shop keeper presents his wares, a menu of my portfolio projects will be listed. Then, the player can select a project to receive a summary and a link to learn more.
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## 🚶‍♂️ Movable Player
+
+After the shop cutscene has finished, I would like for the player to be able to move around.
+
+### 👨‍👩‍👧‍👧 Interactive NPCs
+
+Eventually, I would like to have other interactive NPCs in the shop that present different aspects of my portfolio.
