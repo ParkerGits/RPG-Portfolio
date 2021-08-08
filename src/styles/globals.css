@@ -1,0 +1,10 @@
+/* ./styles/globals.css */
+@tailwind base;
+@tailwind components;
+
+@font-face {
+	font-family: 'W95FA';
+	src: local('W95FA'), url(/fonts/w95fa.woff2) format('woff2');
+}
+
+@tailwind utilities;

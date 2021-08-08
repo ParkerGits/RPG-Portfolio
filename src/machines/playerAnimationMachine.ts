@@ -2,9 +2,8 @@ import { createMachine } from 'xstate'
 
 export const playerAnimationMachine = createMachine({
 	id: 'playerAnimationMachine',
-	initial: 'walking',
+	initial: 'idle',
 	context: {
-		FPS: 8,
 		animationFrame: 0,
 		facing: 'down',
 	},
@@ -22,7 +21,7 @@ export const playerAnimationMachine = createMachine({
 		},
 		walking: {
 			after: {
-				125: { target: 'frameAdvance' },
+				125: 'frameAdvance',
 			},
 			on: {
 				IDLE: { target: 'idle' },

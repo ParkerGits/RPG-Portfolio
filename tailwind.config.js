@@ -6,7 +6,14 @@ module.exports = {
 	],
 	darkMode: false, // or 'media' or 'class'
 	theme: {
-		extend: {},
+		fontFamily: {
+			rpg: ['W95FA', 'ui-monospace'],
+		},
+		extend: {
+			backgroundImage: (theme) => ({
+				shop: 'url(/img/shopbg.png)',
+			}),
+		},
 	},
 	variants: {
 		extend: {},

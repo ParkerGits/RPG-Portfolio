@@ -25,10 +25,33 @@ When talking with an NPC, there will be a dialogue box that the user can interac
 
 When the shop keeper presents his wares, a menu of my portfolio projects will be listed. Then, the player can select a project to receive a summary and a link to learn more.
 
-## 🚶‍♂️ Movable Player
+### 🚶‍♂️ Movable Player
 
 After the shop cutscene has finished, I would like for the player to be able to move around.
 
 ### 👨‍👩‍👧‍👧 Interactive NPCs
 
 Eventually, I would like to have other interactive NPCs in the shop that present different aspects of my portfolio.
+
+## 💭 Dev Thoughts & Notes
+
+Instead of implementing keyboard input, I can use a state machine and predetermined paths between NPCs to let the player move from one NPC to another. Then, when the user clicks on an NPC, the player will follow the predetermined path from the NPC he was previously interacting with to the NPC that was clicked on. This is analagous to a transition from one finite state to the next: different finite states will represent the different interactive NPCs
+
+The state machine will look like:
+
+[Interacting with NPC1] -> [Walking to NPC2] -> [Interacting with NPC2]
+
+Nested inside [Walking to NPC2] will be the states that lay out the predefined path from NPC1 to NPC2. Something like
+
+[Walking Down] -> [Walking Left] -> [Walking Up]
+
+Each of these finite states will have an `after` property that defines how long the player walks for. Then, with a constant walk speed, we can set up paths easily.
+
+Is it more performant to import images than to just store their paths?
+
+TODO:
+
+- Sound
+- Other NPCs
+- useSelector? (xstate performance)
+- FIX TYPES
