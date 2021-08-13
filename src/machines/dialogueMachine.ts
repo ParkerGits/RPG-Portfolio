@@ -43,20 +43,20 @@ export const dialogueMachine = createMachine<
 >({
 	initial: 'idle',
 	context: {
-		speaker: '',
-		text: [],
-		face: '',
-		numPanels: 0,
+		speaker: undefined,
+		text: undefined,
+		face: undefined,
+		numPanels: undefined,
 		currPanel: 0,
 	},
 	states: {
 		idle: {
 			id: 'idle',
 			entry: assign({
-				speaker: '',
-				text: [],
-				face: '',
-				numPanels: 0,
+				speaker: undefined,
+				text: undefined,
+				face: undefined,
+				numPanels: undefined,
 				currPanel: 0,
 			}),
 			on: {
