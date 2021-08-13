@@ -47,6 +47,8 @@ Nested inside [Walking to NPC2] will be the states that lay out the predefined p
 
 Each of these finite states will have an `after` property that defines how long the player walks for. Then, with a constant walk speed, we can set up paths easily.
 
+Furthermore, as I realized while developing, we can group the walking states into one `Walking` finite state. The benefit of this is that, because there is functionality common to all walking states regardless of who the player is walking to, we can trigger functionality based on whether the player is simply `Walking`. This also holds for dialogue states: there is functionality common to all dialogue states that warrant a general `Dialogue` state to group them within.
+
 Is it more performant to import images than to just store their paths?
 
 TODO:
@@ -54,4 +56,7 @@ TODO:
 - Sound
 - Other NPCs
 - useSelector? (xstate performance)
-- FIX TYPES
+- Characters fade out on unmount
+- make Tailwind classes for all styles
+- Testing state machines with Jest
+- Test React?

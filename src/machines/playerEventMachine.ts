@@ -26,6 +26,9 @@ export const playerEventMachine = createMachine<
 				},
 				shopkeeperDialogue: {
 					id: 'shopkeeperDialogue',
+					on: {
+						FINISH_DIALOGUE: '#shopMenu',
+					},
 				},
 			},
 		},
@@ -47,6 +50,9 @@ export const playerEventMachine = createMachine<
 					states: {},
 				},
 			},
+		},
+		shopMenu: {
+			id: 'shopMenu',
 		},
 	},
 })

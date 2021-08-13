@@ -20,7 +20,13 @@ export default function DialogueBox() {
 	const [currentPlayerState, sendPlayerEvent] = useActor(
 		playerEventService.playerEventState,
 	)
-	const handleProceed = () => {}
+	const handleProceed = () => {
+		if (currentDialogue.matches({ dialogue: 'displayFinalPanel' })) {
+			sendDialogueEvent('FINISH_DIALOGUE')
+			sendPlayerEvent('FINISH_DIALOGUE')
+		}
+		sendDialogueEvent('NEXT')
+	}
 	useEffect(() => {
 		console.log(currentDialogue.value)
 		if (currentPlayerState.matches('dialogue')) {
@@ -33,6 +39,7 @@ export default function DialogueBox() {
 			})
 		}
 	}, [currentPlayerState, sendDialogueEvent, currentDialogue])
+
 	return (
 		<div
 			className="flex flex-col"
@@ -44,8 +51,8 @@ export default function DialogueBox() {
 				transition: '0.25s ease-in-out',
 			}}>
 			<div
-				className={`h-1/6 border-${
-					currentDialogue.matches('dialogue') ? '2' : '0'
+				className={`h-1/6 border ${
+					currentDialogue.matches('dialogue') ? 'border-2' : 'border-0'
 				} w-1/6 bg-blue-800 border-white border-b-0 rounded-t-lg ml-4 text-center text-white font-mono bg-opacity-90 flex items-center justify-center`}
 				style={{
 					borderStyle: 'ridge',
@@ -80,17 +87,13 @@ export default function DialogueBox() {
 					</p>
 				)}
 				<div className="self-end mr-2">
-					<button
-						className="font-rpg text-white text-xl"
-						onClick={() => {
-							if (currentDialogue.context.onFinalPanel) {
-								sendDialogueEvent('NEXT')
-								sendPlayerEvent('FINISH_DIALOGUE')
-							}
-							sendDialogueEvent('NEXT')
-						}}>
-						&gt;
-					</button>
+					{currentDialogue.matches('dialogue') && (
+						<button
+							className="font-rpg text-white text-xl"
+							onClick={handleProceed}>
+							&gt;
+						</button>
+					)}
 				</div>
 			</div>
 		</div>

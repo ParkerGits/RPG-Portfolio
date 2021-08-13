@@ -6,12 +6,12 @@ export type DialogueMachineContext = {
 	face: string
 	numPanels: number
 	currPanel: number
-	onFinalPanel: boolean
 }
 
 export type DialogueEvent =
 	| { type: 'DIALOGUE'; speaker: string; text: string[]; face: string }
 	| { type: 'NEXT' }
+	| { type: 'FINISH_DIALOGUE' }
 
 export type DialogueTypestate =
 	| {
@@ -27,13 +27,20 @@ export type DialogueTypestate =
 			value: 'dialogue'
 			context: DialogueMachineContext
 	  }
+	| {
+			value: { dialogue: 'displayCurrentPanel' }
+			context: DialogueMachineContext
+	  }
+	| {
+			value: { dialogue: 'displayFinalPanel' }
+			context: DialogueMachineContext
+	  }
 
 export const dialogueMachine = createMachine<
 	DialogueMachineContext,
 	DialogueEvent,
 	DialogueTypestate
 >({
-	id: 'dialogue',
 	initial: 'idle',
 	context: {
 		speaker: '',
@@ -41,21 +48,20 @@ export const dialogueMachine = createMachine<
 		face: '',
 		numPanels: 0,
 		currPanel: 0,
-		onFinalPanel: false,
 	},
 	states: {
 		idle: {
+			id: 'idle',
 			entry: assign({
-				speaker: undefined,
-				text: undefined,
-				face: undefined,
-				numPanels: undefined,
+				speaker: '',
+				text: [],
+				face: '',
+				numPanels: 0,
 				currPanel: 0,
-				onFinalPanel: false,
 			}),
 			on: {
 				DIALOGUE: {
-					target: 'dialogue',
+					target: '#determinePanel',
 					actions: assign((_context, event) => ({
 						speaker: event.speaker,
 						text: event.text,
@@ -66,24 +72,33 @@ export const dialogueMachine = createMachine<
 			},
 		},
 		dialogue: {
-			entry: assign((context) => ({
-				onFinalPanel: context.currPanel === context.numPanels - 1,
-			})),
-			on: {
-				NEXT: {
-					target: 'proceeding',
-					actions: assign((context) => ({ currPanel: context.currPanel + 1 })),
+			states: {
+				displayCurrentPanel: {
+					on: {
+						NEXT: {
+							target: 'determinePanel',
+							actions: assign((context) => ({
+								currPanel: context.currPanel + 1,
+							})),
+						},
+					},
+				},
+				determinePanel: {
+					id: 'determinePanel',
+					always: [
+						{
+							target: 'displayFinalPanel',
+							cond: (context) => context.currPanel === context.numPanels - 1,
+						},
+						{ target: 'displayCurrentPanel' },
+					],
+				},
+				displayFinalPanel: {
+					on: {
+						FINISH_DIALOGUE: '#idle',
+					},
 				},
 			},
-		},
-		proceeding: {
-			always: [
-				{
-					target: 'idle',
-					cond: (context) => context.currPanel === context.numPanels,
-				},
-				{ target: 'dialogue' },
-			],
 		},
 	},
 })

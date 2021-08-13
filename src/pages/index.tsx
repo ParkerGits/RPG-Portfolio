@@ -1,6 +1,7 @@
 import DialogueBox from '../components/DialogueBox'
 import Player from '../components/Player'
 import Shopkeeper from '../components/Shopkeeper'
+
 export default function Home() {
 	return (
 		<div className="flex items-center justify-center bg-black h-screen">
