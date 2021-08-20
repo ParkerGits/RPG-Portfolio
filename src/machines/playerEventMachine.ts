@@ -1,17 +1,41 @@
-import { createMachine } from 'xstate'
+import { createMachine, assign } from 'xstate'
 
-export type PlayerEventMachineContext = {}
+export type PlayerEventMachineContext = {
+	visible: boolean
+	bgmPlaying: boolean
+}
 
-export type PlayerEvent = { type: 'FINISH_DIALOGUE' }
+export type PlayerEvent = { type: 'FINISH_DIALOGUE' } | { type: 'START' }
 
 export const playerEventMachine = createMachine<
 	PlayerEventMachineContext,
 	PlayerEvent
 >({
 	id: 'playerState',
-	initial: 'entering',
+	context: {
+		visible: false,
+		bgmPlaying: false,
+	},
+	initial: 'ready',
 	states: {
+		ready: {
+			on: {
+				START: 'openingDoor',
+			},
+		},
+		openingDoor: {
+			after: {
+				1000: 'entering',
+			},
+		},
 		entering: {
+			entry: (context) => (context.visible = true),
+			after: {
+				2000: 'startBgm',
+			},
+		},
+		startBgm: {
+			entry: (context) => (context.bgmPlaying = true),
 			after: {
 				500: '#shopkeeperGreeting',
 			},

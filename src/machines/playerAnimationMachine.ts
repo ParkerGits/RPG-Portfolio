@@ -5,7 +5,7 @@ export const playerAnimationMachine = createMachine({
 	initial: 'idle',
 	context: {
 		animationFrame: 0,
-		facing: 'down',
+		facing: 'right',
 	},
 	states: {
 		idle: {

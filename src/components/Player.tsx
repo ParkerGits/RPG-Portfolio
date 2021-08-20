@@ -11,12 +11,12 @@ export default function Player() {
 	const [currentPlayerState, sendPlayerEvent] = useActor(
 		playerEventService.playerEventState,
 	)
-	const [xPos, setXPos] = useState(10)
-	const [yPos, setYPos] = useState(325)
 	const [currentWalkingAnimation, sendWalkingAnimationEvent] = useMachine(
 		playerAnimationMachine,
 	)
 	const [movementFrames, sendMovementFrames] = useMachine(playerMovementMachine)
+	const [xPos, setXPos] = useState(10)
+	const [yPos, setYPos] = useState(328)
 	useEffect(() => {
 		if (currentPlayerState.matches('walking')) {
 			sendMovementFrames('MOVE')
@@ -64,6 +64,8 @@ export default function Player() {
 				bottom: `${yPos}px`,
 				left: `${xPos}px`,
 				height: '47px',
+				opacity: currentPlayerState.context.visible ? 100 : 0,
+				transition: 'opacity 0.5s ease-in-out',
 			}}>
 			<Image
 				src={
@@ -73,8 +75,8 @@ export default function Player() {
 								currentWalkingAnimation.context.animationFrame
 						  ]
 				}
-				width={35}
-				height={47}
+				width={42}
+				height={56.4}
 				alt="player"
 			/>
 		</div>
