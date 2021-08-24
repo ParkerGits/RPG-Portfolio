@@ -40,6 +40,7 @@ export default function DialogueBox() {
 		}
 	}, [currentPlayerState, sendDialogueEvent, currentDialogue])
 
+	const inDialogue = currentDialogue.matches('dialogue')
 	return (
 		<div
 			className="flex flex-col"
@@ -47,18 +48,18 @@ export default function DialogueBox() {
 				width: '979px',
 				bottom: 0,
 				height: '20%',
-				opacity: currentDialogue.matches('dialogue') ? 100 : 0,
+				opacity: inDialogue ? 100 : 0,
 				transition: '0.25s ease-in-out',
 			}}>
 			<div
 				className={`h-1/6 border ${
-					currentDialogue.matches('dialogue') ? 'border-2' : 'border-0'
+					inDialogue ? 'border-2' : 'border-0'
 				} w-1/6 bg-blue-800 border-white border-b-0 rounded-t-lg ml-4 text-center text-white font-mono bg-opacity-90 flex items-center justify-center`}
 				style={{
 					borderStyle: 'ridge',
 					transition: '0.2s ease-in-out',
 				}}>
-				{currentDialogue.matches('dialogue') && (
+				{inDialogue && (
 					<h1
 						className="text-lg font-rpg"
 						style={{ textShadow: '0px 2px black' }}>
@@ -67,11 +68,14 @@ export default function DialogueBox() {
 				)}
 			</div>
 			<div
+				onClick={inDialogue ? handleProceed : null}
 				className={`h-5/6 border-${
-					currentDialogue.matches('dialogue') ? '2' : '0'
-				} bg-blue-800 border-white rounded-t-lg flex flex-row bg-opacity-90`}
+					inDialogue ? '2' : '0'
+				} bg-blue-800 border-white rounded-t-lg flex flex-row bg-opacity-90 ${
+					inDialogue && 'cursor-pointer'
+				}`}
 				style={{ transition: '0.2s ease-in-out', textShadow: '0px 2px black' }}>
-				{currentDialogue.matches('dialogue') && (
+				{inDialogue && (
 					<div className="flex items-center h-full min-w-max ml-3">
 						<Image
 							src={currentDialogue.context.face}
@@ -81,20 +85,16 @@ export default function DialogueBox() {
 						/>
 					</div>
 				)}
-				{currentDialogue.matches('dialogue') && (
+				{inDialogue && (
 					<p className="font-rpg mt-3 text-white w-full text-lg">
 						{currentDialogue.context.text[currentDialogue.context.currPanel]}
 					</p>
 				)}
-				<div className="self-end mr-2">
-					{currentDialogue.matches('dialogue') && (
-						<button
-							className="font-rpg text-white text-xl"
-							onClick={handleProceed}>
-							&gt;
-						</button>
-					)}
-				</div>
+				{inDialogue && (
+					<div className="self-end mr-2">
+						<p className="font-rpg text-white text-xl">&gt;</p>
+					</div>
+				)}
 			</div>
 		</div>
 	)

@@ -53,7 +53,6 @@ Is it more performant to import images than to just store their paths?
 
 TODO:
 
-- Sound
 - Other NPCs
 - useSelector? (xstate performance)
 - Characters fade out on unmount
