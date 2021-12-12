@@ -7,10 +7,8 @@ import { playerMovementMachine } from '../machines/playerMovementMachine'
 import { PlayerEventContext } from '../context/playerEventContext'
 
 export default function Player() {
-	const playerEventService = useContext(PlayerEventContext)
-	const [currentPlayerState, sendPlayerEvent] = useActor(
-		playerEventService.playerEventState,
-	)
+	const playerEventState = useContext(PlayerEventContext)
+	const [currentPlayerState, sendPlayerEvent] = useActor(playerEventState)
 	const [currentWalkingAnimation, sendWalkingAnimationEvent] = useMachine(
 		playerAnimationMachine,
 	)

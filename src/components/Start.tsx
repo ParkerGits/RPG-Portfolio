@@ -3,10 +3,8 @@ import { useContext } from 'react'
 import { PlayerEventContext } from '../context/playerEventContext'
 
 export default function Start() {
-	const playerEventService = useContext(PlayerEventContext)
-	const [currentPlayerState, sendPlayerEvent] = useActor(
-		playerEventService.playerEventState,
-	)
+	const playerEventState = useContext(PlayerEventContext)
+	const [currentPlayerState, sendPlayerEvent] = useActor(playerEventState)
 	return (
 		<div className="w-full h-full flex items-center justify-center">
 			<div

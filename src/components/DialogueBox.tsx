@@ -16,10 +16,8 @@ export default function DialogueBox() {
 		DialogueEvent,
 		DialogueTypestate
 	>(dialogueMachine)
-	const playerEventService = useContext(PlayerEventContext)
-	const [currentPlayerState, sendPlayerEvent] = useActor(
-		playerEventService.playerEventState,
-	)
+	const playerEventState = useContext(PlayerEventContext)
+	const [currentPlayerState, sendPlayerEvent] = useActor(playerEventState)
 	const handleProceed = () => {
 		if (currentDialogue.matches({ dialogue: 'displayFinalPanel' })) {
 			sendDialogueEvent('FINISH_DIALOGUE')

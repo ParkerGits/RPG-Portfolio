@@ -53,6 +53,8 @@ Is it more performant to import images than to just store their paths?
 
 TODO:
 
+- loop the sound
+- alt text on tech stack images
 - Other NPCs
 - useSelector? (xstate performance)
 - Characters fade out on unmount
