@@ -40,12 +40,14 @@ export default function ItemDescription({
         <h1
           className="font-rpg text-2xl text-white"
           style={{ textShadow: '0px 2px black' }}>
-          Check out the project!
+          Check out the project! 👀
         </h1>
         <ul className="list-disc mx-4">
           {portfolioItem.links.map((link) => (
             <li className="font-rpg text-white" key={link.href}>
-              <Link href={link.href}>{link.text}</Link>
+              <a target="_blank" rel="noopener noreferrer" href={link.href}>
+                {link.text}
+              </a>
             </li>
           ))}
         </ul>

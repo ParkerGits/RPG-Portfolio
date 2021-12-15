@@ -12,8 +12,12 @@ export default function ShopMenu() {
   const [selectedItem, setSelectedItem] = useState<number | null>(null)
   return (
     <div
-      className="w-11/12 self-center my-auto rounded-2xl bg-black bg-opacity-80 border-2 border-white"
-      style={{ height: '90%', borderStyle: 'ridge' }}>
+      className="w-11/12 my-auto self-center rounded-2xl bg-black bg-opacity-90 border-2 border-white"
+      style={{
+        height: '90%',
+        borderStyle: 'ridge',
+        display: currentPlayerState.matches('shopMenu') ? 'block' : 'none',
+      }}>
       <div
         className="grid grid-cols-5 items-center border-b-2"
         style={{ height: '8%', borderStyle: 'ridge' }}>
@@ -23,7 +27,7 @@ export default function ShopMenu() {
           <h1
             className="font-rpg text-3xl text-white"
             style={{ textShadow: '0px 2px black' }}>
-            Parker&apos;s Portfolio Shop
+            ⚔️ Parker&apos;s Portfolio Shop
           </h1>
         </div>
         <div className="flex justify-around col-span-2 mx-2">
@@ -34,7 +38,7 @@ export default function ShopMenu() {
             <h1
               className="font-rpg text-2xl text-white text-center opacity-100"
               style={{ textShadow: '0px 2px black' }}>
-              Buy
+              💰 Buy
             </h1>
           </div>
           <div
@@ -45,8 +49,9 @@ export default function ShopMenu() {
             onMouseLeave={() => setHoveringCancel(false)}>
             <h1
               className="font-rpg text-2xl text-white text-center "
-              style={{ textShadow: '0px 2px black' }}>
-              Cancel
+              style={{ textShadow: '0px 2px black' }}
+              onClick={() => sendPlayerEvent('EXIT_SHOPPING')}>
+              👋 Exit
             </h1>
           </div>
         </div>
@@ -56,7 +61,7 @@ export default function ShopMenu() {
           <h1
             className="font-rpg text-2xl text-white"
             style={{ textShadow: '0px 2px black' }}>
-            99999 Gold
+            ✨720 Gold✨
           </h1>
         </div>
       </div>

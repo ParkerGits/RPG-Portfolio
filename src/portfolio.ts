@@ -112,4 +112,23 @@ export const portfolio: PortfolioItem[] = [
     percentComplete: 100,
     techStackIcons: [CPlusPlusIcon],
   },
+  {
+    id: 6,
+    name: 'Minecraft Furnace State Machine',
+    description:
+      'To demonstrate my knowledge of state machines and state management in React, I created a functional Minecraft furnace in the browser. Check it out below!',
+    links: [
+      {
+        text: 'Minecraft Furnace State Machine Deployment',
+        href: 'https://parkergits.github.io/minecraft-furnace-xstate-react/',
+      },
+      {
+        text: 'ParkerGits/minecraft-furnace-xstate-react Repository',
+        href: 'https://github.com/ParkerGits/minecraft-furnace-xstate-react',
+      },
+    ],
+    icon: '🏭',
+    percentComplete: 100,
+    techStackIcons: [ReactIcon, XStateIcon],
+  },
 ]
