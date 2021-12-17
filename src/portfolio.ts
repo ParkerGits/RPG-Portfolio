@@ -67,10 +67,10 @@ export const portfolio: PortfolioItem[] = [
     id: 3,
     name: 'State Management Project Club',
     description:
-      'Over a 6 week period, from July to August of 2021, I led a Portfolio Project Club in the egghead.io community. The objective of this club was to design, build, and document a business-oriented portfolio project that demonstrates an understanding of State Management in React. At the end of the 6 weeks, club members presented functioning projects that would make for impressive additions to their resumes. The project that I worked on was this website! I used React and XState to control the animations and interactions. I hope to add more functionality here in the future.',
+      'Over a 6 week period, from July to August of 2021, I led a Portfolio Project Club in the egghead.io community. The objective of this club was to design, build, and document a business-oriented portfolio project that demonstrates an understanding of State Management in React. At the end of the 6 weeks, club members presented functional projects that would make for impressive additions to their resumes. The project that I worked on was this website! I used React and XState to control the animations and interactions. I hope to add more functionality here in the future.',
     links: [
       {
-        text: 'RPG Portfolio GitHub Repository (this website!)',
+        text: 'RPG Portfolio GitHub Repository',
         href: 'https://github.com/ParkerGits/RPG-Portfolio',
       },
       {
